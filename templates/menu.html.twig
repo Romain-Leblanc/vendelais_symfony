@@ -1,0 +1,117 @@
+		<div class="container">
+			<div class="w3layouts_logo">
+				<a href="{{path('accueil_film')}}"><h1>Cinema<span>Vendelais</span></h1></a>
+			</div>			
+			<div class="w3_search">
+				{{ render(controller('App\\Controller\\DefaultController::searchBarAction')) }}
+				<!-- <form method="post">
+					<input type="text" id="recherchefilm" name="recherchefilm" placeholder="Recherche" required="">
+					<input type="submit" value="Go">
+				</form> -->
+			</div>
+			<div class="w3l_sign_in_register">
+				<ul>
+					{% if app.user %} {# Test si la session est ouverte #}
+        				<li><a href=""><i class="fas fa-user"></i> M. {{app.user.Nom}}</a></li>
+						<li><a href="{{ path('index_panier') }}"><i class="fas fa-cart-arrow-down"></i>{{ render(controller('App\\Controller\\PanierController::nbProdPanier')) }}</a></li>
+					{% else %}
+						<li><a href="{{ path('app_login') }}">Connexion</a></li>
+       				{% endif %}
+					<!-- <i class="fas fa-user"></i> M. LEBLANC </a> -->
+					<!-- <li><i class="fa fa-phone" aria-hidden="true"></i>02 12 34 56 78</li> -->
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+<!-- nav -->
+<div class="movies_nav">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header navbar-left">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<nav>
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="{{path('accueil_film')}}">Accueil</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown">Genres <b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-3">
+									<li>
+									<div class="col-sm-4">
+										<ul class="multi-column-dropdown">
+										{% for unGenre in lesGenres %}
+											<li><a href="{{path('film_genre', {'genre': unGenre.genreFilm}) }}">{{ unGenre.genreFilm }}</a></li>
+										{% endfor %}
+											<li><a href="{{path('film_genre', {'genre': '*'}) }}">Tous genres</a></li>
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+									</li>
+								</ul>
+							</li>
+							<li><a href="">tv - series</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown">Pays <b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-3">
+									<li>
+										<div class="col-sm-4">
+											<ul class="multi-column-dropdown">
+											{% for uneNationalite in lesNationalites %}
+												<li><a href="{{path('film_natio', {'natio': uneNationalite.nationaliteFilm}) }}">{{ uneNationalite.nationaliteFilm }}</a></li>
+											{% endfor %}
+											</ul>
+										</div>
+										<div class="clearfix"></div>
+									</li>
+								</ul>
+							</li>
+							<!--<li><a href="short-codes.php">Short Codes</a></li>-->
+							<li><a href="{{ path('film_liste') }}">Liste films</a></li>							
+							{% if app.user %}
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-id-badge"></i> Mon compte <b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-3">
+									<li>
+										<div class="col-sm-4">
+											<ul class="multi-column-dropdown">
+												<li><a href="">Profil</a></li>
+												<li><a href="{{path('commande_index')}}">Commandes</a></li>
+												<li><a href="">Abonnements</a></li>
+											</ul>
+										</div>
+										<div class="clearfix"></div>
+									</li>
+								</ul>
+							</li>
+                  			<li><a href="{{path('app_logout')}}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+							{% else %}
+							<li><a href="">Abonnements</a></li>
+							<li><a href="">Actualités</a></li>
+							{% endif %}
+						</ul>
+					</nav>
+				</div>
+			</nav>	
+		</div>
+	</div>
+<!-- //nav -->
+<script>
+		$('.toggle').click(function(){
+		  // Switches the Icon
+		  $(this).children('i').toggleClass('fa-pencil');
+		  // Switches the forms  
+		  $('.form').animate({
+			height: "toggle",
+			'padding-top': 'toggle',
+			'padding-bottom': 'toggle',
+			opacity: "toggle"
+		  }, "slow");
+		});
+</script>

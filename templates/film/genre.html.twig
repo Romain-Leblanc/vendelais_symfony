@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<!-- /w3l-medile-movies-grids -->
+	<div class="general-agileits-w3l">
+		<div class="w3l-medile-movies-grids">
+
+<!-- /movie-browse-agile -->				
+<div class="movie-browse-agile">
+
+		<!--/browse-agile-w3ls -->
+		<div class="browse-agile-w3ls general-w3ls">
+
+			<div class="tittle-head">
+
+				{% if (genre=='*') %}
+				<h4 class="latest-text">Tous films</h4>
+				{% else %}
+				<h4 class="latest-text">Films {{ genre }}</h4>
+				{% endif %}
+				<div class="container">
+					
+					<div class="agileits-single-top">
+							<ol class="breadcrumb">
+								<li><a href="{{ path('accueil_film') }}">Accueil</a></li>
+								<li class="active">Genres</li>
+								{% if (genre=='*') %}
+								<li class="active">Tous films</li>
+								{% else %}
+								<li class="active">{{ genre }}</li>
+								{% endif %}
+								
+							</ol>
+					</div>
+
+				</div>
+
+			</div>
+						
+
+				<div class="container">						
+						<div class="browse-inner">
+
+								{% for filmgenre in unFilmGenre %}
+						
+									<div class="col-md-2 w3l-movie-gride-agile">
+										<a href="{{path('film_single', {'id': filmgenre.id}) }}" class="hvr-shutter-out-horizontal"><img src="{{ asset('Images/genreFilm/' ~ filmgenre.imgFilm) }}" title="album-name" alt=" " />
+										</a>
+										<div class="mid-1">
+												<div class="w3l-movie-text">									
+														<h6><a href="{{path('film_single', {'id': filmgenre.id}) }}">{{ filmgenre.nomFilm }}</a></h6>
+												</div>
+											
+												<div class="mid-2">
+														<p>{{ filmgenre.dateSortie|date('Y') }}</p>
+																								
+														<div class="block-stars">													
+																<ul class="w3l-ratings">
+																		<li>{{ nbEtoile(filmgenre.noteFilm)|raw }}</li>
+																</ul>
+														</div>
+														<div class="clearfix"></div>
+												</div>											
+										 </div>
+								 	</div>
+								{% endfor %}
+						 </div>
+				 </div>
+		</div> <!--//browse-agile-w3ls -->
+
+</div> <!-- cette div correspond à //movie-browse-agile	-->
+
+				<!--body wrapper start-->
+			<div class="review-slider">
+						 <h4 class="latest-text">Revues de films</h4>
+						       <div class="container">
+						 		<div class="w3_agile_banner_bottom_grid">
+				<div id="owl-demo" class="owl-carousel owl-theme">
+					{% for lesfilmsbas in lesFilms %}
+					<div class="item">
+						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">							
+							<a href="{{path('film_single', {'id': lesfilmsbas.id}) }}" class="hvr-shutter-out-horizontal"><img src="{{ asset('Images/films/' ~ lesfilmsbas.imgFilm) }}" title="album-name" class="img-responsive" alt=" " />
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{{path('film_single', {'id': lesfilmsbas.id}) }}">{{ lesfilmsbas.nomFilm }}</a></h6>
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{ lesfilmsbas.dateSortie|date('Y') }}</p>
+									<div class="block-stars">
+										<ul class="w3l-ratings">
+											<li>{{ nbEtoile(lesfilmsbas.noteFilm)|raw }}</li>
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>						
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+				
+															</div>		<!--body wrapper end			-->
+						
+			</div>	
+		</div>
+	<!-- //w3l-medile-movies-grids -->
+	</div>
+	<!-- //comedy-w3l-agileits -->
+
+
+{% endblock %}

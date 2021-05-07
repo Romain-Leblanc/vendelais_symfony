@@ -1,12 +1,197 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+		<link rel="icon" href="{{ asset('Images/logo.ico') }}" type="image/icon">
+
+  {% block title %}<title>Cinéma Vendelais</title>{% endblock%}
+
+    {% block stylesheet %}
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ asset('css/Styles/vendelais-css/css/shop-item.css') }}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ asset('css/Styles/fontawesome-free-5.15.1-web/css/all.min.css') }}">
+  <link href="{{ asset('css/Styles/vendelais-css/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{{ asset('css/Styles/vendelais-css/css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
+  <link rel="stylesheet" href="{{ asset('css/Styles/vendelais-css/css/contactstyle.css') }}" type="text/css" media="all" />
+  <link rel="stylesheet" href="{{ asset('css/Styles/vendelais-css/css/faqstyle.css') }}" type="text/css" media="all" />
+  <link href="{{ asset('css/Styles/vendelais-css/css/single.css') }}" rel='stylesheet' type='text/css' />
+  <link href="{{ asset('css/Styles/vendelais-css/css/medile.css') }}" rel='stylesheet' type='text/css' />
+
+  <!-- banner-slider -->
+  <link href="{{ asset('css/Styles/vendelais-css/css/jquery.slidey.min.css') }}" rel="stylesheet">
+  <!-- //banner-slider -->
+
+  <!-- pop-up -->
+  <link href="{{ asset('css/Styles/vendelais-css/css/popuo-box.css') }}" rel="stylesheet" type="text/css" media="all" />
+  <!-- //pop-up -->
+
+  <!-- font-awesome icons -->
+  <link rel="stylesheet" href="{{ asset('css/Styles/vendelais-css/css/font-awesome.min.css') }}" />
+  <!-- //font-awesome icons -->
+
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+
+<link href="{{ asset('css/Styles/vendelais-css/css/owl.carousel.css') }}" rel="stylesheet" type="text/css" media="all">
+    {% endblock %}
+
+    {% block javascript %}
+  <!-- js -->
+  <script type="text/javascript" src="{{ asset('css/Styles/vendelais-css/js/jquery-2.1.4.min.js') }}"></script>
+  <!-- //js -->
+
+  <!-- banner-bottom-plugin -->
+  
+  <script src="{{ asset('css/Styles/vendelais-css/js/owl.carousel.js') }}"></script>
+  <script>
+	  $(document).ready(function() { 
+		  $("#owl-demo").owlCarousel({
+	 
+		    autoPlay: 3000, //Set AutoPlay to 3 seconds
+	 
+		    items : 5,
+		    itemsDesktop : [640,4],
+		    itemsDesktopSmall : [414,3]
+	 
+		  });
+	 
+	  }); 
+  </script> 
+  <!-- //banner-bottom-plugin -->
+    
+
+  
+
+  <!-- start-smoth-scrolling -->
+  <script type="text/javascript" src="{{ asset('css/Styles/vendelais-css/js/move-top.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('css/Styles/vendelais-css/js/easing.js') }}"></script>
+  <script type="text/javascript">
+	  jQuery(document).ready(function($) {
+		    $(".scroll").click(function(event){		
+			    event.preventDefault();
+			    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		    });
+	  });
+  </script>
+  <!-- start-smoth-scrolling -->
+
+  <script src="{{ asset('css/Styles/vendelais-css/js/bootstrap.min.js') }}"></script>
+<script>
+$(document).ready(function(){
+    $(".dropdown").hover(            
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+            $(this).toggleClass('open');       
+        }
+    );
+});
+</script>
+<!-- //Bootstrap Core JavaScript -->
+
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+<!-- Bootstrap core JavaScript -->
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  {% endblock %}
+
+
+
+
+
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <body>        
+            <!-- Navigation -->
+            {{ include("menu.html.twig") }}
+
+            <!-- Page Content -->
+            <div class="container" style="margin:auto">
+
+                {% block body %}
+
+                {% endblock %}
+
+            </div>
+        
+            <!-- footer -->
+<div class="footer">
+		<div class="container">
+			<div class="w3ls_footer_grid">
+				<div class="col-md-6 w3ls_footer_grid_left">
+					<div class="w3ls_footer_grid_left1">
+						<h2>Abonnez-vous à nous</h2>
+						<div class="w3ls_footer_grid_left1_pos">
+							<form action="#" method="post">
+								<input type="email" name="email" placeholder="Votre email..." required="">
+								<input type="submit" value="Envoyer">
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 w3ls_footer_grid_right">
+					<a href="{{path('accueil_film')}}"><h2>Cinéma<span>Vendelais</span></h2></a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-5 w3ls_footer_grid1_left">
+				<p>&copy; 2021 Vendelais. Tous droits réservés.</a></p>
+			</div>
+			<div class="col-md-7 w3ls_footer_grid1_right">
+				<ul>
+					<li>
+						<a href="">Films</a>
+					</li>
+					<li>
+						<a href="">FAQ</a>
+					</li>
+					<li>
+						<a href="">Action</a>
+					</li>
+					<li>
+						<a href="">Aventure</a>
+					</li>
+					<!--<li>
+						<a href="icons.php">Icons</a>
+					</li>-->
+					<li>
+						<a href="">Abonnements</a>
+					</li>
+					<li>
+						<a href="{{ path('contact_index') }}">Contactez-nous</a>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+
+
     </body>
 </html>

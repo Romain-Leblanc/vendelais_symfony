@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Historique commandes</title>{% endblock %}
+
+{% block body %}
+<br>
+<h3><b>Historique des commandes</b></h3><br>
+
+<table class="table mt-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Détails commande</th>
+      <th scope="col">Id</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody class="tab-prod">
+      {% for unecommande in lesCommandes %}
+        <tr>
+          <td><a href="{{ path('commande_show', {'id': unecommande.id}) }}"><img src="{{ asset('Images/Divers/Agrandir.png') }}"/></a></td>
+          <td style="vertical-align: middle;">{{ unecommande.id }}</td>
+          <td style="vertical-align: middle;">{{ unecommande.date|date('Y-m-d')}}</td>
+        </tr>
+      {% else %}
+            <tr>
+                <td colspan="5">Pas d'enregistrements</td>
+            </tr>
+      {% endfor %}
+  </tbody>  
+</table>
+<br>
+    <!-- <a class="btn btn-primary" href="{# path('profil_index') #}">Retour au profil</a> -->
+<br>
+
+{% endblock %}

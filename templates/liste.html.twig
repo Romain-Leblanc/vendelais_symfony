@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br>
+<h4 class="latest-text w3_faq_latest_text w3_latest_text">Listes des films</h4>
+			<div class="container">
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <br>
+						<div id="myTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+								<div class="agile-news-table">
+									<div class="w3ls-news-result">
+                                        {% for NbFilm in nb %}
+										<h4><b>Résultats de la recherche : </b><span>{{ NbFilm.1 }} résultat(s)</span></h4>
+                                        {% endfor %}
+									</div>
+                                    <br>
+									<table id="table-breakpoint" class="list-tab">
+										<thead>
+										  <tr>
+											<th>Numéro </th>
+											<th>Titre du film </th>
+											<th>Date de sortie </th>
+											<th>Pays </th>
+											<th>Genre </th>
+											<th>Note </th>
+										  </tr>
+										</thead>
+										<tbody>
+                                        {% for films in lesFilmsListes %}
+                                        <tr>
+											<td>{{ films.id }}</td>
+											<td class="w3-list-img"><a href="{{ path('film_single', {'id': films.id}) }}"><span>{{ films.nomFilm }}</span></a></td>
+											<td>{{ films.dateSortie|date('d/m/Y') }}</td>
+                                            <td class="w3-list-info"><a>{{ films.nationaliteFilm }}</a></td>
+											<td class="w3-list-info"><a>{{ films.genreFilm }}</a></td>
+											<td>{{ nbEtoile(films.noteFilm)|raw }}</td>
+										  </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <br><br>
+{% endblock %}

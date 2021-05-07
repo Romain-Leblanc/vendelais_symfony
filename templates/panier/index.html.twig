@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Panier</title>{% endblock %}
+
+{% block body %}
+<br>
+<h4><b>Votre Panier :<b><h4><br><br>
+
+<table class="table mt-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Photo</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Référence</th>
+      <th scope="col">Nom film</th>
+      <!-- <th scope="col">Prix</th> -->
+      <th scope="col">Quantité</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody class="tab-prod">
+      {% set total=0 %}
+      {% for unfilm in items %}
+        <tr>
+        <td style="width:5px; height:5px;" ><img src="{{ asset('Images/genreFilm/' ~ unfilm.film.imgFilm) }}" width="100px" height="150px"></td>
+        <td style="vertical-align: middle;">{{ unfilm.film.genreFilm }}</td>   
+        <td style="vertical-align: middle;">{{ unfilm.film.id }}</td>
+        <td style="vertical-align: middle;">{{ unfilm.film.nomFilm }}</td>  
+        <!--<td style="vertical-align: middle;">{# unfilm.film.prix #}</td> -->   
+        <td style="vertical-align: middle;">
+            <a href="{{ path('moins_panier', {'id': unfilm.film.id}) }}"><img src='Images/Panier/EnleverMoins.png'></a>
+                {{ unfilm.qte }}
+            <a href="{{ path('plus_panier', {'id': unfilm.film.id}) }}"><img src='Images/Panier/AjouterPlus.png'></a>
+        </td>
+        <!-- <td style="vertical-align: middle;">{# unfilm.film.prix * unfilm.qte #}</td> -->
+        <td style="vertical-align: middle;"><a class='btn' href="{{ path('remove_panier', {'id': unfilm.film.id}) }}"><img src='Images/Panier/PanierSupprimer.png' alt='Supprimer'></a></td>
+        </tr>
+        {# set total=total + unfilm.film.prix * unfilm.qte #}
+      {% else %}
+            <tr>
+                <td colspan="5">Pas d'enregistrements</td>
+            </tr>
+      {% endfor %}
+        <!-- <tr><td colspan="6">Total</td><td style='text-align:right'>{#total#}</td></tr> -->
+  </tbody>  
+</table>
+<br>
+{% if items is not empty %}
+<a class="btn btn-success" href="{{ path('commande_add') }}">Valider la commande</a><br><br>
+{% endif %}
+<br>
+{% endblock %}

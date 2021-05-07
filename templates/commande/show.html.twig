@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Commande films</title>{% endblock %}
+
+{% block body %}
+    <br>
+    <h2>Commande n°{{uneCde.id}} du {{uneCde.date|date('d-m-Y')}}</h2>
+    <br><br>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Photo</th>
+                <th>Genre</th>
+                <th>Référence</th>
+                <th>Nom film</th>
+                <!-- <th>Prix</th> -->
+                <th>Quantité</th>
+                <th>Montant</th>                
+            </tr>
+        </thead>
+        <tbody>
+            {% set total=0 %}
+            {% for uneCdeFilm in uneCde.LigneCommandeFilms %}
+            <tr>
+                <td style="width:5px; height:5px;" ><img src="{{ asset('Images/genreFilm/' ~ uneCdeFilm.unfilm.imgFilm) }}" width="100px" height="150px"></td>
+                <td style="vertical-align: middle;">{{ uneCdeFilm.unfilm.genreFilm }}</td>   
+                <td style="vertical-align: middle;">{{ uneCdeFilm.unfilm.id }}</td>
+                <td style="vertical-align: middle;">{{ uneCdeFilm.unfilm.nomFilm }}</td>  
+                <!--<td style="vertical-align: middle;">{# unfilm.film.prix #}</td> -->
+                <td style="vertical-align: middle;">{{ uneCdeFilm.quantite }}</td>
+                <!-- <td style="vertical-align: middle;">{# uneCdeFilm.unFilm.prix * uneCdeFilm.quantite #}</td> -->
+            </tr>
+            {# set total=total + uneCdeFilm.unFilm.prix * uneCdeFilm.quantite #}
+            {% else %}
+            <tr>
+                <td colspan="5">Pas d'enregistrements</td>
+            </tr>
+            {% endfor %}
+            <!-- <tr><td colspan="5">Total</td><td>{#total#} €</td></tr> -->
+        </tbody>
+    </table>
+    <br>
+    <a class="btn btn-primary" href="{{ path('commande_index') }}">Retour liste commandes</a><br><br>
+{% endblock %}
